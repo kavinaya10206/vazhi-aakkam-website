@@ -1,0 +1,223 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 70px; /* navbar height */
+}
+
+/* Canvas Background */
+#background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(17, 17, 17, 0.95);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.company-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-right a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #e0e0e0;
+}
+
+.nav-right a.active,
+.nav-right a:hover {
+  color: #ff3c00;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 10%;
+  min-height: 60vh;
+}
+
+.hero-left img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.hero-right {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.hero-right h1 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.hero-right span {
+  color: #ff3c00;
+}
+
+/* Welcome */
+.welcome {
+  display: flex;
+  align-items: center;
+  padding: 60px 10%;
+}
+
+.welcome-left,
+.welcome-right {
+  flex: 1;
+  padding: 20px;
+}
+
+.welcome-right img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+/* Why + Vision */
+.why-vision {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 5rem 10%;
+}
+
+.section-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.vision-container {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+}
+
+/* RESPONSIVE – SAME LAYOUT, STACKED */
+@media (max-width: 900px) {
+
+  .hero,
+  .welcome {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-vision {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 65px;
+  }
+
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    height: 100svh;
+  }
+
+  .hero-content {
+    max-width: 90%;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .btn-start {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+/* ================= MOBILE NAVBAR TOGGLE ================= */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 70px; /* navbar height */
+    right: 0;
+    width: 100%;
+    background: rgba(17, 17, 17, 0.97);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .nav-right a {
+    margin: 15px 0;
+    font-size: 18px;
+  }
+
+  /* when menu is open */
+  .nav-right.active {
+    display: flex;
+  }
+}
+

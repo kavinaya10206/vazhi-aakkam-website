@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero with Navbar</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="image/logo.jpg" alt="Logo" class="logo">
+      <span class="company-name">VAZHI AAKKAM</span>
+    </div>
+
+    <ul class="nav-right" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="service.html">Services</a></li>
+      <li><a href="service.html#team">Our Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+
+    <!-- ✅ VIDEO MUST BE INSIDE HERO -->
+    <video autoplay muted loop playsinline>
+      <source src="image/home page.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <h1>Empowering the Future</h1>
+      <p>Join us in building sustainable solutions</p>
+      <a href="about.html" class="btn-start">Get Started</a>
+    </div>
+
+  </section>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+  </script>
+</body>
+</html>

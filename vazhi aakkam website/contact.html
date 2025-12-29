@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Vazhi Aakkam</title>
+  <link rel="stylesheet" href="contact.css" />
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <canvas id="background"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="image/logo.jpg" alt="Logo" class="logo">
+      <span class="company-name">VAZHI AAKKAM</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="service.html">Service</a>
+      <a href="service.html#team">Our Team</a>
+      <a href="contact.html" class="active">Contact</a>
+      
+    </div>
+     <div class="menu-toggle" id="menu-toggle">☰</div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-container">
+
+      <h2>Let’s Work Together</h2>
+      <p>Share your details, and we’ll connect to empower your journey.</p>
+
+      <!-- Hidden iframe -->
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+      <form
+        action="https://docs.google.com/forms/d/e/1FAIpQLSdLGRX-kucoNlArkjmHJX0sDtt6qzQLYGEe3z_OI4L7GZBGnw/formResponse"
+        method="POST"
+        target="hidden_iframe"
+        id="contactForm"
+      >
+
+        <label>Full Name</label>
+        <input type="text" name="entry.2005620554" placeholder="Enter your name" required>
+
+        <label>Email Address</label>
+        <input type="email" name="entry.1045781291" placeholder="Enter your email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="entry.1166974658" placeholder="Enter your phone number" required>
+
+        <label>Service Chosen</label>
+        <select name="entry.1065046570" class="service-select" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="Business Strategy & Planning">Business Strategy & Planning</option>
+          <option value="Market Research & Analysis">Market Research & Analysis</option>
+          <option value="Startup Support & Mentoring">Startup Support & Mentoring</option>
+          <option value="Financial Consulting">Financial Consulting</option>
+          <option value="Training & Workshops">Training & Workshops</option>
+          <option value="Sustainable Business Strategy">Sustainable Business Strategy</option>
+        </select>
+
+        <button type="submit">Submit</button>
+
+      </form>
+    </div>
+    <!-- Success Popup -->
+<div id="successPopup" class="success-popup">
+  <div class="popup-content">
+    <h3>✅ Thanks for contacting us!</h3>
+    <p>We’ll get back to you shortly.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+  </section>
+<!-- JS for Full Page Background -->
+<script>
+  const canvas = document.getElementById('background');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let nodes = [];
+
+  // Resize canvas to window
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+
+    // Adjust number of nodes based on screen width
+    const nodeCount = w < 600 ? 40 : 80; // fewer nodes on mobile
+    nodes = [];
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7),
+        vy: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7)
+      });
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 0, w, h);
+
+    // Move nodes
+    for (let i = 0; i < nodes.length; i++) {
+      let n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#0ff';
+      ctx.fill();
+    }
+
+    // Draw connecting lines
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        let a = nodes[i], b = nodes[j];
+        let dx = a.x - b.x, dy = a.y - b.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0,255,255,' + (1 - dist / 160) + ')';
+          ctx.lineWidth = 1;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      } 
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+  const form = document.getElementById("contactForm");
+  const popup = document.getElementById("successPopup");
+
+  form.addEventListener("submit", function () {
+    setTimeout(() => {
+      popup.style.display = "flex";
+      form.reset();
+    }, 800); // small delay to allow form submit
+  });
+
+  function closePopup() {
+    popup.style.display = "none";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navRight = document.querySelector(".nav-right");
+
+    if (menuToggle && navRight) {
+      menuToggle.addEventListener("click", () => {
+        navRight.classList.toggle("active");
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

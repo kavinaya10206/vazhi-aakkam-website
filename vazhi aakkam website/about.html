@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Vazhi Aakkam</title>
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <canvas id="background"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="image/logo.jpg" alt="Logo" class="logo">
+      <span class="company-name">VAZHI AAKKAM</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="service.html">Service</a>
+      <a href="service.html#team">Our Team</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-left">
+      <img src="image/home.jpg" alt="Team working">
+    </div>
+    <div class="hero-right">
+      <h1>Is your <span>BUSINESS</span><br>on the Right Track?</h1>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="welcome">
+    <div class="welcome-left">
+      <h2>Welcome to <span class="highlight">Vazhi Aakkam !</span></h2>
+      <p>
+        At Vazhi Aakkam, we are dedicated to guiding individuals, entrepreneurs, and businesses 
+        towards sustainable growth. Our team specializes in providing mentorship, training, and 
+        strategic support in key areas of personal development, financial literacy, and business 
+        empowerment.  
+      </p>
+      <p>
+        We aim to build a society where opportunities are accessible, ideas are nurtured, and 
+        growth is driven with responsibility and innovation. Whether you are starting a new journey 
+        or looking to scale up, Vazhi Aakkam will be your trusted partner.  
+      </p>
+    </div>
+    <div class="welcome-right">
+      <img src="image/home 2.jpg" alt="Team of professionals">
+    </div>
+  </section>
+
+  <!-- WHY US + VISION SECTION -->
+  <section class="why-vision">
+    <div class="why-container">
+      <h2 class="section-title">✨ Why Choose <span>Us?</span></h2>
+      <ul class="why-list">
+        <li>✔ Trusted business partner for startups & entrepreneurs</li>
+        <li>✔ Strategic consulting tailored to your growth</li>
+        <li>✔ Innovative solutions with proven results</li>
+        <li>✔ Commitment to long-term sustainability</li>
+      </ul>
+    </div>
+
+    <div class="vision-container">
+      <h2 class="section-title">🌿 Our Vision</h2>
+      <p class="vision-text">
+        “To empower every dreamer, entrepreneur, and business with the right guidance,
+        resources, and strategy — so they don’t just grow, they <span>thrive with purpose</span>.”
+      </p>
+    </div>
+  </section>
+
+  <!-- JS for Animated Background -->
+<script>
+  const canvas = document.getElementById('background');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let nodes = [];
+
+  // Resize canvas to window
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+
+    // Adjust number of nodes based on screen width
+    const nodeCount = w < 600 ? 40 : 80; // fewer nodes on mobile
+    nodes = [];
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7),
+        vy: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7)
+      });
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 0, w, h);
+
+    // Move nodes
+    for (let i = 0; i < nodes.length; i++) {
+      let n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#0ff';
+      ctx.fill();
+    }
+
+    // Draw connecting lines
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        let a = nodes[i], b = nodes[j];
+        let dx = a.x - b.x, dy = a.y - b.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0,255,255,' + (1 - dist / 160) + ')';
+          ctx.lineWidth = 1;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      } 
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navRight = document.querySelector(".nav-right");
+
+    if (menuToggle && navRight) {
+      menuToggle.addEventListener("click", () => {
+        navRight.classList.toggle("active");
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

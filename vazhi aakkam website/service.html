@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAZHI AAKKAM - Services & Team</title>
+  <link rel="stylesheet" href="service.css">
+</head>
+<body>
+  <!-- Background Canvas -->
+  <canvas id="background"></canvas>
+
+  <!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-left">
+      <img src="image/logo.jpg" alt="Logo" class="logo">
+      <span class="company-name">VAZHI AAKKAM</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="service.html"class="active">Service</a>
+      <a href="#team">Our Team</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </nav>
+
+
+  </header>
+ <!-- Services -->
+  <section class="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="circle">1</div>
+        <div class="content">
+          <h3>Business Strategy & Planning</h3>
+          <p><b>○</b>Vision, mission, and goal setting<br>
+          ○Business model development<br>
+          ○Strategic roadmaps</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="circle">2</div>
+        <div class="content">
+          <h3><b>Market Research & Analysis</b></h3>
+          <p>○Industry & competitor analysis<br>
+          ○Customer behavior insights<br>
+          ○Feasibility studies</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="circle">3</div>
+        <div class="content">
+          <h3><b>Startup Support & Mentoring</b></h3>
+          <p>Idea validation<br>
+          Business plan creation<br>
+          Pitch deck preparation</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="circle">4</div>
+        <div class="content">
+          <h3><b>Financial Consulting</b></h3>
+          <p>Budgeting & forecasting<br>
+          Cost optimization<br>
+          Fundraising & investor readiness</p>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="circle">5</div>
+        <div class="content">
+          <h3><b>Training & Workshops</b></h3>
+          <p>
+          Leadership development<br>
+          Entrepreneurship coaching<br>
+          Business skill training</p>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="circle">6</div>
+        <div class="content">
+          <h3><b>Sustainable Business Strategy</b></h3>
+          <p>Scalable<br> Reliable<br> Sustainable solutions for your future success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Team Section -->
+  <section id="team" class="team-section">
+  <h2>Meet Our Team</h2>
+  <div class="team-container">
+    
+    <!-- Person 1 -->
+    <div class="team-card">
+      <img src="image/sakthi.jpg" alt="p1">
+      <h3>SAKTHI MAHESHA P</h3>
+      <p>Founder<BR>
+        <BR>MARKETING & BRANDING HEAD</p>
+    </div>
+
+    <!-- Person 2 -->
+    <div class="team-card">
+      <img src="image/kavi.jpg" alt="Member 2">
+      <h3>KAVINAYA T</h3>
+      <p>CEO<BR>&<BR> START-UP MENTOR</p>
+    </div>
+
+    <!-- Person 3 -->
+    <div class="team-card">
+      <img src="image/moni.jpg" alt="Member 3">
+      <h3>ALAGU MONISHA P</h3>
+      <p>Designer</p>
+    </div>
+
+    <!-- Person 4 -->
+    <div class="team-card">
+      <img src="image/karthi.jpg" alt="Member 4">
+      <h3>KARTHIKA T</h3>
+      <p>OPERATION <BR>&<BR>BUSINESS CONSULTANT</p>
+    </div>
+
+    <!-- Person 5 -->
+    <div class="team-card">
+      <img src="image/annisha.jpg" alt="Member 5">
+      <h3>ANISHA S</h3>
+      <p>CLIENT RELATIONSHIP MANAGER</p>
+    </div>
+
+    <!-- Person 6 -->
+    <div class="team-card">
+      <img src="image/karpagam.jpg" alt="Member 6">
+      <h3>KARPAGAM G</h3>
+      <p>FINANCIAL ADVISOR</p>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
+<!-- JS for Full Page Background -->
+  <canvas id="background"></canvas>
+<script>
+  const canvas = document.getElementById('background');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  let nodes = [];
+
+  // Resize canvas to window
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+
+    // Adjust number of nodes based on screen width
+    const nodeCount = w < 600 ? 40 : 80; // fewer nodes on mobile
+    nodes = [];
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7),
+        vy: (Math.random() - 0.5) * (w < 600 ? 0.4 : 0.7)
+      });
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  function draw() {
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 0, w, h);
+
+    // Move nodes
+    for (let i = 0; i < nodes.length; i++) {
+      let n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#0ff';
+      ctx.fill();
+    }
+
+    // Draw connecting lines
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        let a = nodes[i], b = nodes[j];
+        let dx = a.x - b.x, dy = a.y - b.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0,255,255,' + (1 - dist / 160) + ')';
+          ctx.lineWidth = 1;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      } 
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+  const menuToggle = document.getElementById("menu-toggle");
+  const navRight = document.querySelector(".nav-right");
+
+  menuToggle.addEventListener("click", () => {
+    navRight.classList.toggle("active");
+  });
+</script>
+
+</body>
+</html>

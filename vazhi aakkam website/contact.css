@@ -1,0 +1,285 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* PAGE SETUP */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+}
+
+/* CANVAS BACKGROUND */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.85);
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.company-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav-right {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-right a {
+  margin: 6px 12px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-right a:hover {
+  color: #4ade80;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 40px;
+}
+
+/* CONTACT CARD */
+.contact-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* TEXT */
+.contact-container h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #4ade80;
+}
+
+.contact-container p {
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+  margin: 10px 0 25px;
+}
+
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+select {
+  padding: 12px 15px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: none;
+  outline: none;
+}
+
+/* 🔥 SERVICE DROPDOWN FIX */
+.service-select {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  cursor: pointer;
+}
+
+.service-select option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.service-select option:hover,
+.service-select option:checked {
+  background: #e5e7eb !important;
+  color: #000 !important;
+}
+
+/* BUTTON */
+button {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #22c55e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .contact-container {
+    padding: 30px 20px;
+  }
+
+  .contact-container h2 {
+    font-size: 24px;
+  }
+}
+/* SUCCESS POPUP */
+.success-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background: #0b0b0b;
+  border-radius: 16px;
+  padding: 30px 25px;
+  text-align: center;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+  animation: popupScale 0.4s ease;
+}
+
+.popup-content h3 {
+  color: #22c55e;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.popup-content p {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  background: #000000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+}
+
+.popup-content button:hover {
+  background: #c7ceca;
+}
+
+@keyframes popupScale {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 65px;
+  }
+
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+}
+/* ================= MOBILE NAVBAR TOGGLE ================= */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 101;
+  }
+
+  .nav-right {
+    position: absolute;
+    top: 70px; /* navbar height */
+    right: 0;
+    width: 100%;
+    background: rgba(43, 43, 43, 0.97);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+
+    /* hidden by default */
+    display: none;
+  }
+
+  .nav-right a {
+    margin: 15px 0;
+    font-size: 18px;
+  }
+
+  /* show menu when active */
+  .nav-right.active {
+    display: flex;
+  }
+}
